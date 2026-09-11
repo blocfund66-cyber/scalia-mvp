@@ -1,0 +1,19 @@
+{
+  "name": "scalia-mvp",
+  "version": "1.0.0",
+  "description": "Scalia - Plateforme de Travail & Entraînement d'IA Rémunéré",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "scalia",
+    "ai-training",
+    "micro-work",
+    "web3",
+    "mobile-money"
+  ],
+  "author": "Scalia Team",
+  "license": "UNLICENSED"
+}
