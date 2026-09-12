@@ -2483,6 +2483,166 @@
       }
     }
 
+  
+    /* ==================================================== */
+    /* MOBILE-FIRST BULLETPROOF HEADER & TOPBAR STYLES      */
+    /* ==================================================== */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 260px;
+      right: 0;
+      height: 70px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 800;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-sizing: border-box;
+      transition: top 0.15s ease;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-shrink: 1;
+    }
+
+    #topbar-title-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 991px) {
+      .topbar {
+        left: 0 !important;
+        right: 0 !important;
+        height: 58px !important;
+        padding: 0 10px !important;
+        gap: 6px !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      }
+
+      body.console-mode .main-content {
+        margin-left: 0 !important;
+        padding: calc(58px + var(--fomo-banner-height) + 12px) 12px 85px 12px !important;
+      }
+
+      .topbar-left {
+        max-width: 125px !important;
+      }
+
+      #topbar-title-text {
+        font-size: 0.95rem !important;
+        max-width: 120px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .topbar-right {
+        gap: 6px !important;
+      }
+
+      /* Compact Language Selector on Mobile */
+      .lang-selector-btn.topbar-lang {
+        padding: 4px 6px !important;
+        font-size: 0.74rem !important;
+        border-radius: 8px !important;
+        gap: 3px !important;
+      }
+      .lang-selector-btn.topbar-lang .ri-arrow-down-s-line {
+        display: none !important;
+      }
+
+      /* Compact Theme Toggle on Mobile */
+      .theme-toggle-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.95rem !important;
+      }
+
+      /* Compact Balance on Mobile: hide 'Solde :' label */
+      .topbar-balance {
+        padding: 4px 8px !important;
+        gap: 4px !important;
+        border-radius: 8px !important;
+      }
+      .topbar-balance span:not(.topbar-balance-val) {
+        display: none !important;
+      }
+      .topbar-balance i {
+        font-size: 0.9rem !important;
+      }
+      .topbar-balance-val {
+        font-size: 0.78rem !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+      }
+
+      /* Compact Avatar on Mobile */
+      .user-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.78rem !important;
+      }
+
+      /* Clean Stats Cards on Mobile */
+      .trainer-header-stats {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+      }
+      .stat-card {
+        padding: 10px 14px !important;
+        border-radius: 12px !important;
+        gap: 12px !important;
+      }
+      .stat-icon {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.25rem !important;
+        border-radius: 10px !important;
+      }
+      .stat-label {
+        font-size: 0.75rem !important;
+      }
+      .stat-value {
+        font-size: 1.1rem !important;
+      }
+
+      /* Progress Bar on Mobile */
+      .progress-track-container {
+        padding: 12px 14px !important;
+        border-radius: 12px !important;
+        margin-bottom: 14px !important;
+      }
+      .progress-track-container h3 {
+        font-size: 0.92rem !important;
+      }
+      #progress-time-text {
+        font-size: 0.95rem !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -2564,7 +2724,7 @@
   <!-- TOPBAR HEADER (CONSOLE ONLY)               -->
   <!-- ========================================== -->
   <header class="topbar">
-    <div>
+    <div class="topbar-left">
       <h2 id="topbar-title-text" style="font-size: 1.3rem;">Console Entraîneur IA</h2>
     </div>
     
@@ -2605,7 +2765,7 @@
       <div class="topbar-balance" onclick="goTo('wallet-screen')">
         <i class="ri-wallet-line" style="color: var(--accent-emerald)"></i>
         <span>Solde :</span>
-        <span class="topbar-balance-val" id="topbar-balance-val">1 250 FCFA</span>
+        <span class="topbar-balance-val" id="topbar-balance-val">0 FCFA</span>
       </div>
       <div class="user-avatar" id="user-avatar-initials" onclick="handleAvatarClick()" title="Consulter mon Profil">JB</div>
     </div>
@@ -3987,21 +4147,21 @@
           <div class="stat-icon"><i class="ri-line-chart-line"></i></div>
           <div class="stat-details">
             <span class="stat-label" data-i18n="stat_daily_earnings">Gains d'aujourd'hui</span>
-            <span class="stat-value" id="stats-daily-earnings">750 FCFA</span>
+            <span class="stat-value" id="stats-daily-earnings">0 FCFA</span>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><i class="ri-wallet-3-line"></i></div>
           <div class="stat-details">
             <span class="stat-label" data-i18n="stat_target_salary">Objectif Palier Actif</span>
-            <span class="stat-value" id="stats-target-salary">30 000 - 50 000 FCFA</span>
+            <span class="stat-value" id="stats-target-salary">Collatéral requis</span>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon"><i class="ri-shield-check-line"></i></div>
           <div class="stat-details">
             <span class="stat-label" data-i18n="stat_locked_collateral">Collatéral Verrouillé</span>
-            <span class="stat-value" id="stats-locked-collateral">15 000 FCFA</span>
+            <span class="stat-value" id="stats-locked-collateral">0 FCFA</span>
           </div>
         </div>
       </div>
@@ -4018,7 +4178,7 @@
               Quota requis : <span id="target-hours-text" style="font-weight: 700; color: var(--text-primary);">2 heures / jour</span> pour débloquer votre rémunération mensuelle complète.
             </p>
           </div>
-          <span style="font-weight: 700; font-size: 1.25rem; color: var(--accent-emerald);" id="progress-time-text">45 min / 120 min</span>
+          <span style="font-weight: 700; font-size: 1.25rem; color: var(--accent-emerald);" id="progress-time-text">0 min / 120 min (0%)</span>
         </div>
         <div class="progress-bar-outer">
           <div class="progress-bar-inner" id="progress-bar-fill"></div>
@@ -4333,7 +4493,7 @@
             
             <div class="wallet-balance-row">
               <span class="wallet-balance-title">Solde disponible</span>
-              <div class="wallet-balance-big" id="wallet-balance-val">1 250 FCFA</div>
+              <div class="wallet-balance-big" id="wallet-balance-val">0 FCFA</div>
             </div>
             
             <div class="wallet-actions-row">
@@ -4864,7 +5024,7 @@
           </div>
           <div style="display: flex; justify-content: space-between;">
             <span style="color: var(--text-secondary);">Solde du Portefeuille :</span>
-            <strong id="profile-balance-text" style="color: var(--accent-emerald);">1 250 FCFA</strong>
+            <strong id="profile-balance-text" style="color: var(--accent-emerald);">0 FCFA</strong>
           </div>
         </div>
 
@@ -6031,6 +6191,59 @@
     }
 
     // Callback when Google returns a valid credential
+    
+    // ----------------------------------------------------
+    // COLLATERAL RECOMMENDATION MODAL & ONBOARDING DIALOG
+    // ----------------------------------------------------
+    let currentRecommendedTier = 'gold';
+
+    function openCollateralRecommendationModal(userName) {
+      currentRecommendedTier = 'gold';
+      selectRecommendationTier('gold');
+
+      const titleEl = document.getElementById('rec-modal-title');
+      if (titleEl && userName) {
+        titleEl.innerText = "👋 Bienvenue " + userName + " ! Activez votre Console";
+      }
+
+      const modal = document.getElementById('collateral-recommendation-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCollateralRecommendationModal() {
+      const modal = document.getElementById('collateral-recommendation-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function selectRecommendationTier(tierKey) {
+      currentRecommendedTier = tierKey;
+      ['bronze', 'silver', 'gold', 'platinum', 'diamond'].forEach(t => {
+        const card = document.getElementById('rec-card-' + t);
+        const radio = document.getElementById('radio-' + t);
+        if (card) {
+          if (t === tierKey) {
+            card.style.borderColor = 'var(--accent-emerald)';
+            card.style.background = 'rgba(16,185,129,0.06)';
+          } else {
+            card.style.borderColor = 'var(--border-color)';
+            card.style.background = 'var(--bg-card)';
+          }
+        }
+        if (radio) radio.checked = (t === tierKey);
+      });
+    }
+
+    function confirmRecommendationTierSubscription() {
+      closeCollateralRecommendationModal();
+      openCollateralModalForTier(currentRecommendedTier);
+    }
+
+    function simulateRecommendationApproval() {
+      activeCheckoutTier = currentRecommendedTier;
+      closeCollateralRecommendationModal();
+      simulatePaymentApproval('Validation Test Démo');
+    }
+
     function handleGoogleCredentialResponse(response) {
       const payload = decodeGoogleJwt(response.credential);
       if (!payload) {
@@ -6046,9 +6259,11 @@
       const initials = (fn.charAt(0) + ln.charAt(0)).toUpperCase();
       const existingUsername = localStorage.getItem('scalia_username');
       const username = existingUsername || ('COACH-' + fn.substring(0, 3).toUpperCase() + '-' + Math.floor(1000 + Math.random() * 9000));
-      const tier = localStorage.getItem('scalia_tier') || state.userTier || 'bronze';
+      const tier = localStorage.getItem('scalia_tier') || 'bronze';
       const country = localStorage.getItem('scalia_country') || '';
       const city = localStorage.getItem('scalia_city') || '';
+
+      const hasActiveCollateral = localStorage.getItem('scalia_collateral_active') === 'true';
 
       // Persist session
       localStorage.setItem('scalia_session_active', 'true');
@@ -6065,24 +6280,30 @@
       if (country) localStorage.setItem('scalia_country', country);
       if (city) localStorage.setItem('scalia_city', city);
 
-      // Update app state
+      // Initialize state with STRICT ZERO balances
       state.role = 'entraineur';
       state.userTier = tier;
-      state.collateralLocked = tierParams[tier].collateral;
-      state.dailyTargetTime = tierParams[tier].time;
-      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 1250;
+      state.collateralActive = hasActiveCollateral;
+      state.collateralLocked = hasActiveCollateral ? (tierParams[tier]?.collateral || 15000) : 0;
+      state.dailyTargetTime = tierParams[tier]?.time || 120;
+      state.balance = hasActiveCollateral ? (parseInt(localStorage.getItem('scalia_balance')) || 0) : 0;
+      state.dailyEarnings = 0;
+      state.dailyTime = 0;
 
-      // Update avatar with Google profile picture or initials
+      // Update avatar
       updateGoogleAvatar(picture, initials);
 
-      const dict = (typeof SCALIA_TRANSLATIONS !== 'undefined' && SCALIA_TRANSLATIONS[currentLang]) ? SCALIA_TRANSLATIONS[currentLang] : null;
-      const toastTitle = dict ? (currentLang === 'fr' ? 'Connexion Google réussie' : currentLang === 'es' ? 'Conexión con Google exitosa' : currentLang === 'ar' ? 'تم تسجيل الدخول بجوجل' : 'Google Sign-In Successful') : 'Google Sign-In Réussi';
-      const toastMsg = dict ? (currentLang === 'fr' ? `Bienvenue ${fn} ${ln} !` : currentLang === 'es' ? `¡Bienvenido ${fn} ${ln}!` : currentLang === 'ar' ? `!${fn} ${ln} مرحبًا` : `Welcome ${fn} ${ln}!`) : `Bienvenue ${fn} ${ln} !`;
-
-      showToast(toastTitle, toastMsg);
+      showToast('Connexion Google réussie', 'Ravi de vous accueillir sur Scalia, ' + fn + ' !');
       updateNavigationBars();
       updateAuthUI();
       goTo('dresseur-screen');
+
+      // If user has NOT deposited collateral, IMMEDIATELY show recommendation dialog box!
+      if (!hasActiveCollateral) {
+        setTimeout(() => {
+          openCollateralRecommendationModal(fn);
+        }, 350);
+      }
     }
 
     // Update avatar elements with Google picture or fallback to initials
@@ -6442,7 +6663,7 @@
       state.userTier = activeCheckoutTier;
       state.collateralLocked = tierInfo.collateral;
       state.dailyTargetTime = tierInfo.time;
-      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 1250;
+      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 0;
 
       // Add transaction to wallet history
       const now = new Date();
@@ -6551,19 +6772,18 @@
     // ----------------------------------------------------
     const state = {
       role: 'entraineur',
-      userTier: 'bronze', 
-      collateralLocked: 15000,
-      balance: 1250,
-      dailyTime: 45, // in minutes
-      dailyTargetTime: 120, // in minutes
-      dailyEarnings: 750,
-      
-      // Exercise indexes
+      userTier: localStorage.getItem('scalia_tier') || 'bronze', 
+      collateralActive: localStorage.getItem('scalia_collateral_active') === 'true',
+      collateralLocked: (localStorage.getItem('scalia_collateral_active') === 'true') ? (tierParams[localStorage.getItem('scalia_tier') || 'bronze']?.collateral || 15000) : 0,
+      balance: parseInt(localStorage.getItem('scalia_balance')) || 0,
+      dailyTime: 0,
+      dailyTargetTime: 120,
+      dailyEarnings: 0,
       currentCaptchaIdx: 0,
       currentVideoIdx: 0,
       currentTextIdx: 0,
       currentAuditIdx: 0,
-      completedTaskCount: 14,
+      completedTaskCount: 0,
       
       // Referral Parameters
       trainerReferralCount: 2,
@@ -6574,13 +6794,7 @@
         { name: 'Oumar K. (Douala)', role: 'Entraîneur Gold (45k)', commission: 2250, status: 'Payé' }
       ],
       
-      transactions: [
-        { date: '2026-06-25', type: 'Dépôt Collatéral', amount: -15000, status: 'Verrouillé', method: 'Orange Money' },
-        { date: '2026-06-25', type: 'Validation CAPTCHA', amount: 50, status: 'Complété', method: 'Console Entraîneur' },
-        { date: '2026-06-25', type: 'Validation CAPTCHA', amount: 50, status: 'Complété', method: 'Console Entraîneur' },
-        { date: '2026-06-25', type: 'Évaluation Vidéo Ad', amount: 150, status: 'Complété', method: 'Console Entraîneur' },
-        { date: '2026-06-24', type: 'Dépôt Initial', amount: 16250, status: 'Complété', method: 'Mobile Money' }
-      ]
+      transactions: []
     };
 
     // ----------------------------------------------------
@@ -7498,7 +7712,7 @@
       state.userTier = localStorage.getItem('scalia_tier') || 'bronze';
       state.collateralLocked = tierParams[state.userTier].collateral;
       state.dailyTargetTime = tierParams[state.userTier].time;
-      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 1250;
+      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 0;
 
       const fn = localStorage.getItem('scalia_firstname') || 'Jean';
       showToast("Connexion Réussie", `Ravi de vous revoir, ${fn} ! Console déverrouillée.`);
@@ -7573,10 +7787,12 @@
       const ln = savedLastname || 'Baptiste';
       const em = savedEmail || `${fn.toLowerCase()}.${ln.toLowerCase()}@gmail.com`;
       const username = localStorage.getItem('scalia_username') || ('COACH-' + fn.substring(0,3).toUpperCase() + '-' + Math.floor(1000 + Math.random() * 9000));
-      const tier = localStorage.getItem('scalia_tier') || state.userTier || 'bronze';
+      const tier = localStorage.getItem('scalia_tier') || 'bronze';
       const country = localStorage.getItem('scalia_country') || 'Cameroun';
       const city = localStorage.getItem('scalia_city') || 'Douala';
       const initials = (fn.charAt(0) + ln.charAt(0)).toUpperCase();
+
+      const hasActiveCollateral = localStorage.getItem('scalia_collateral_active') === 'true';
 
       localStorage.setItem('scalia_session_active', 'true');
       localStorage.setItem('scalia_role', 'entraineur');
@@ -7595,17 +7811,27 @@
 
       state.role = 'entraineur';
       state.userTier = tier;
-      state.collateralLocked = tierParams[tier].collateral;
-      state.dailyTargetTime = tierParams[tier].time;
-      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 1250;
+      state.collateralActive = hasActiveCollateral;
+      state.collateralLocked = hasActiveCollateral ? (tierParams[tier]?.collateral || 15000) : 0;
+      state.dailyTargetTime = tierParams[tier]?.time || 120;
+      state.balance = hasActiveCollateral ? (parseInt(localStorage.getItem('scalia_balance')) || 0) : 0;
+      state.dailyEarnings = 0;
+      state.dailyTime = 0;
 
       const avatar = document.getElementById('user-avatar-initials');
       if (avatar) avatar.innerText = initials;
 
-      showToast("Google Sign-In (Démo)", `Bienvenue ${fn} ${ln} ! Mode démo — configurez votre Client ID Google pour activer la connexion réelle.`);
+      showToast("Google Sign-In (Démo)", `Bienvenue ${fn} ${ln} !`);
       updateNavigationBars();
       updateAuthUI();
       goTo('dresseur-screen');
+
+      // If user has NOT deposited collateral, IMMEDIATELY show recommendation dialog box!
+      if (!hasActiveCollateral) {
+        setTimeout(() => {
+          openCollateralRecommendationModal(fn);
+        }, 350);
+      }
     }
 
     function goToActiveConsole() {
@@ -7893,7 +8119,7 @@
 
       state.collateralLocked = tierParams[state.userTier].collateral;
       state.dailyTargetTime = tierParams[state.userTier].time;
-      state.balance = 1250;
+      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 0;
 
       localStorage.setItem('scalia_session_active', 'true');
       saveSessionToLocalStorage();
@@ -7945,7 +8171,7 @@
       state.userTier = tierField;
       state.collateralLocked = tierParams[tierField].collateral;
       state.dailyTargetTime = tierParams[tierField].time;
-      state.balance = 1250;
+      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 0;
 
       const initials = userField.substring(0, 2).toUpperCase();
       localStorage.setItem('scalia_username', userField);
@@ -9015,5 +9241,111 @@
       initSession();
     });
   </script>
+
+  <!-- ========================================== -->
+  <!-- MODAL : RECOMMANDATION SOUSCRIPTION COLLATÉRAL -->
+  <!-- ========================================== -->
+  <div class="modal-overlay" id="collateral-recommendation-modal" style="display: none; z-index: 1600;">
+    <div class="glass-card watermark-container" style="max-width: 580px; width: 94%; max-height: 92vh; overflow-y: auto; padding: 25px 20px; border-radius: 20px; text-align: center; position: relative;">
+      <button onclick="closeCollateralRecommendationModal()" style="position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-secondary);" title="Fermer">✕</button>
+      
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald); display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 12px; box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);">
+        <i class="ri-shield-keyhole-line"></i>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 6px;" id="rec-modal-title">Activez votre Console d'Entraîneur</h3>
+      <p style="font-size: 0.86rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 14px; line-height: 1.45;">
+        Pour accéder à vos exercices rémunérés et débloquer vos gains quotidiens, veuillez choisir une rubrique et souscrire avec votre <strong>collatéral de garantie</strong>.
+      </p>
+
+      <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 10px 14px; max-width: 500px; margin: 0 auto 16px; text-align: left; font-size: 0.8rem; color: var(--text-secondary); display: flex; gap: 10px; align-items: center;">
+        <i class="ri-shield-check-line" style="font-size: 1.5rem; color: var(--accent-emerald); flex-shrink: 0;"></i>
+        <div>
+          <strong style="color: var(--text-primary);">Collatéral 100% garanti & restituable :</strong>
+          Vos fonds sont sécurisés sous séquestre et intégralement remboursés à la fin de votre cycle mensuel de 4 semaines.
+        </div>
+      </div>
+
+      <!-- Rubriques / Tiers selection list -->
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; text-align: left;">
+        
+        <!-- Bronze -->
+        <div class="tier-choice-card" onclick="selectRecommendationTier('bronze')" id="rec-card-bronze" style="border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; background: var(--bg-card);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="rec-tier-radio" id="radio-bronze" value="bronze" style="accent-color: var(--accent-emerald); width: 16px; height: 16px;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.92rem; color: #cd7f32;">Palier Bronze (15 000 FCFA)</div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary);">2h/jour • CAPTCHA & Vidéo • Cible : 30 000 - 50 000 FCFA/mois</div>
+            </div>
+          </div>
+          <span class="badge" style="background: rgba(205,127,50,0.15); color: #cd7f32; font-size: 0.72rem; padding: 3px 8px;">15k</span>
+        </div>
+
+        <!-- Silver -->
+        <div class="tier-choice-card" onclick="selectRecommendationTier('silver')" id="rec-card-silver" style="border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; background: var(--bg-card);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="rec-tier-radio" id="radio-silver" value="silver" style="accent-color: var(--accent-emerald); width: 16px; height: 16px;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.92rem; color: #94a3b8;">Palier Silver (25 000 FCFA)</div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary);">3h/jour • + Textes LLM • Cible : 70 000 - 120 000 FCFA/mois</div>
+            </div>
+          </div>
+          <span class="badge" style="background: rgba(148,163,184,0.15); color: #94a3b8; font-size: 0.72rem; padding: 3px 8px;">25k</span>
+        </div>
+
+        <!-- Gold (Default Recommended) -->
+        <div class="tier-choice-card selected" onclick="selectRecommendationTier('gold')" id="rec-card-gold" style="border: 2px solid var(--accent-emerald); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; background: rgba(16,185,129,0.05);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="rec-tier-radio" id="radio-gold" value="gold" checked style="accent-color: var(--accent-emerald); width: 16px; height: 16px;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.92rem; color: #eab308;">Palier Gold ⭐ (Recommandé)</div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary);">4h/jour • Tous les modules d'exercices • Cible : 130 000 - 180 000 FCFA/mois</div>
+            </div>
+          </div>
+          <span class="badge badge-emerald" style="font-size: 0.72rem; padding: 3px 8px;">45k • Top Choix</span>
+        </div>
+
+        <!-- Platinum -->
+        <div class="tier-choice-card" onclick="selectRecommendationTier('platinum')" id="rec-card-platinum" style="border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; background: var(--bg-card);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="rec-tier-radio" id="radio-platinum" value="platinum" style="accent-color: var(--accent-emerald); width: 16px; height: 16px;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.92rem; color: #38bdf8;">Palier Platinum (75 000 FCFA)</div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary);">6h/jour • Tous modules + Bonus +10% • Cible : 190 000 - 250 000 FCFA/mois</div>
+            </div>
+          </div>
+          <span class="badge" style="background: rgba(56,189,248,0.15); color: #38bdf8; font-size: 0.72rem; padding: 3px 8px;">75k</span>
+        </div>
+
+        <!-- Diamond -->
+        <div class="tier-choice-card" onclick="selectRecommendationTier('diamond')" id="rec-card-diamond" style="border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; background: var(--bg-card);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="radio" name="rec-tier-radio" id="radio-diamond" value="diamond" style="accent-color: var(--accent-emerald); width: 16px; height: 16px;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.92rem; color: #a855f7;">Palier Diamond (100 000 FCFA)</div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary);">8h/jour • Plein Temps + Bonus +20% • Cible : 280 000 - 350 000 FCFA/mois</div>
+            </div>
+          </div>
+          <span class="badge" style="background: rgba(168,85,247,0.15); color: #a855f7; font-size: 0.72rem; padding: 3px 8px;">100k</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button class="btn btn-primary-trainer" style="width: 100%; padding: 12px; font-size: 0.95rem;" onclick="confirmRecommendationTierSubscription()">
+          <i class="ri-shield-keyhole-line"></i> Souscrire & Déposer mon Collatéral
+        </button>
+        <div style="display: flex; gap: 8px; justify-content: center;">
+          <button class="btn btn-secondary" onclick="simulateRecommendationApproval()" style="flex: 1; padding: 8px 12px; font-size: 0.8rem;">
+            <i class="ri-flashlight-line"></i> Tester l'activation (Démo)
+          </button>
+          <button class="btn btn-secondary" onclick="closeCollateralRecommendationModal()" style="padding: 8px 14px; font-size: 0.8rem; color: var(--text-secondary);">
+            Découvrir d'abord
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
