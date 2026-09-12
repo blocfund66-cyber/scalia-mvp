@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: scalia-mvp
+    name: scalia
     runtime: static
     buildCommand: ""
     staticPublishPath: .

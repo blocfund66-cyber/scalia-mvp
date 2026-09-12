@@ -1,5 +1,5 @@
 {
-  "name": "scalia-mvp",
+  "name": "scalia",
   "version": "1.0.0",
   "description": "Scalia - Plateforme de Travail & Entraînement d'IA Rémunéré",
   "main": "server.js",
