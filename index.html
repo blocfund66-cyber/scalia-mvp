@@ -884,49 +884,99 @@
       -webkit-backdrop-filter: blur(12px);
     }
     @media (max-width: 991px) {
-      .topbar {
-        left: 0;
+      body.console-mode .topbar {
+        left: 0 !important;
+        right: 0 !important;
+        height: 56px !important;
+        padding: 0 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+        top: var(--fomo-banner-height) !important;
       }
-    }
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .topbar-balance {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 10px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border-color);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .topbar-balance:hover {
-      border-color: var(--accent-emerald);
-    }
-    .topbar-balance-val {
-      font-weight: 700;
-      color: var(--accent-emerald);
-    }
-    .user-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-indigo), var(--accent-emerald));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      user-select: none;
-      transition: var(--transition);
-    }
-    .user-avatar:hover {
+
+      body.console-mode .main-content {
+        margin-left: 0 !important;
+        padding: calc(56px + var(--fomo-banner-height) + 12px) 12px 85px 12px !important;
+      }
+
+      .topbar-left {
+        display: flex !important;
+        align-items: center !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+        overflow: hidden !important;
+      }
+
+      #topbar-title-text {
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        line-height: 1.2 !important;
+        color: var(--text-primary) !important;
+      }
+
+      .topbar-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* Compact Language Selector on Mobile */
+      .lang-selector-btn.topbar-lang {
+        padding: 4px 6px !important;
+        font-size: 0.74rem !important;
+        border-radius: 8px !important;
+        gap: 3px !important;
+        flex-shrink: 0 !important;
+      }
+      .lang-selector-btn.topbar-lang .ri-arrow-down-s-line {
+        display: none !important;
+      }
+
+      /* Compact Theme Toggle on Mobile */
+      .theme-toggle-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.95rem !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* Compact Balance on Mobile: never wraps, clean single line */
+      .topbar-balance {
+        padding: 4px 8px !important;
+        gap: 4px !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+      }
+      .topbar-balance span:not(.topbar-balance-val) {
+        display: none !important;
+      }
+      .topbar-balance i {
+        font-size: 0.9rem !important;
+      }
+      .topbar-balance-val {
+        font-size: 0.78rem !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+      }
+
+      /* Compact Avatar on Mobile */
+      .user-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.78rem !important;
+        flex-shrink: 0 !important;
+      }
+.user-avatar:hover {
       transform: scale(1.05);
     }
 
@@ -2643,180 +2693,6 @@
       }
     }
 
-  
-    /* ---------------------------------------------------- */
-    /* 2-ROW HEADER & 2-ROW MODULES ARCHITECTURE           */
-    /* ---------------------------------------------------- */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 260px;
-      right: 0;
-      height: 82px;
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8px 24px;
-      z-index: 800;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-sizing: border-box;
-      gap: 6px;
-      transition: top 0.15s ease;
-    }
-
-    .topbar-row-top, .topbar-row-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .topbar-brand-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    #topbar-title-text {
-      font-size: 1.12rem;
-      font-weight: 700;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-    }
-
-    .topbar-controls-right, .topbar-status-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .topbar-tier-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 8px;
-      white-space: nowrap;
-    }
-    .topbar-tier-pill.locked {
-      background: rgba(239, 68, 68, 0.12);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.25);
-    }
-    .topbar-tier-pill.unlocked {
-      background: rgba(16, 185, 129, 0.12);
-      color: #10b981;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-    }
-
-    .task-item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 18px;
-      gap: 12px;
-    }
-    .task-row-bottom-meta {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 991px) {
-      .topbar {
-        left: 0 !important;
-        right: 0 !important;
-        height: 76px !important;
-        padding: 8px 12px !important;
-        gap: 6px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      }
-
-      body.console-mode .main-content {
-        margin-left: 0 !important;
-        padding: calc(76px + var(--fomo-banner-height) + 12px) 12px 85px 12px !important;
-      }
-
-      #topbar-title-text {
-        font-size: 0.98rem !important;
-        max-width: 220px !important;
-      }
-
-      .topbar-balance {
-        padding: 3px 8px !important;
-        gap: 5px !important;
-        border-radius: 8px !important;
-      }
-      .topbar-balance-label {
-        font-size: 0.75rem !important;
-      }
-      .topbar-balance-val {
-        font-size: 0.8rem !important;
-        font-weight: 800 !important;
-      }
-
-      .theme-toggle-btn {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 1rem !important;
-      }
-
-      .user-avatar {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 0.8rem !important;
-      }
-
-      .lang-selector-btn.topbar-lang {
-        padding: 3px 7px !important;
-        font-size: 0.72rem !important;
-      }
-
-      /* 2-line Task Rows on Mobile */
-      .task-item-row {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        padding: 12px 14px !important;
-        gap: 8px !important;
-      }
-      .task-info-left {
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 10px !important;
-      }
-      .task-meta-info {
-        flex: 1 !important;
-      }
-      .task-title-text {
-        font-size: 0.92rem !important;
-        font-weight: 700 !important;
-        line-height: 1.3 !important;
-      }
-      .task-row-bottom-meta {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding-left: 38px !important;
-      }
-      .task-payout-row {
-        gap: 8px !important;
-        font-size: 0.76rem !important;
-      }
-    }
-
   </style>
 </head>
 
@@ -2898,66 +2774,50 @@
   <!-- TOPBAR HEADER (CONSOLE ONLY)               -->
   <!-- ========================================== -->
   <header class="topbar">
-    <!-- Row 1: Brand Title & User Controls -->
-    <div class="topbar-row-top">
-      <div class="topbar-brand-left">
-        <i class="ri-terminal-box-line" style="color: var(--accent-emerald); font-size: 1.25rem;"></i>
-        <h2 id="topbar-title-text">Console Entraîneur IA</h2>
-      </div>
-      <div class="topbar-controls-right">
-        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Changer de thème">
-          <i class="ri-sun-line" id="theme-toggle-icon-topbar"></i>
-        </button>
-        <div class="user-avatar" id="user-avatar-initials" onclick="handleAvatarClick()" title="Consulter mon Profil">JB</div>
-      </div>
+    <div class="topbar-left">
+      <h2 id="topbar-title-text">Console Entraîneur IA</h2>
     </div>
-
-    <!-- Row 2: Financial & Status Bar -->
-    <div class="topbar-row-bottom">
-      <div class="topbar-balance" onclick="goTo('wallet-screen')">
-        <i class="ri-wallet-3-line" style="color: var(--accent-emerald);"></i>
-        <span class="topbar-balance-label">Solde :</span>
-        <span class="topbar-balance-val" id="topbar-balance-val">0 FCFA</span>
-      </div>
-
-      <div class="topbar-status-group">
-        <!-- Language Selector -->
-        <div class="lang-selector-container" id="topbar-lang-container">
-          <button type="button" class="lang-selector-btn topbar-lang" onclick="toggleLangDropdown('topbar', event)" id="topbar-lang-btn" title="Changer de langue">
-            <i class="ri-global-line"></i>
-            <span id="topbar-lang-label">FR</span>
-            <i class="ri-arrow-down-s-line" style="font-size: 0.75rem;"></i>
-          </button>
-          <div class="lang-dropdown-menu down" id="topbar-lang-menu">
-            <div class="lang-option active" data-lang="fr" onclick="changeLanguage('fr', event)">
-              <span class="lang-flag">🇫🇷</span>
-              <span class="lang-name">Français</span>
-              <i class="ri-check-line lang-check"></i>
-            </div>
-            <div class="lang-option" data-lang="en" onclick="changeLanguage('en', event)">
-              <span class="lang-flag">🇬🇧</span>
-              <span class="lang-name">English</span>
-              <i class="ri-check-line lang-check"></i>
-            </div>
-            <div class="lang-option" data-lang="es" onclick="changeLanguage('es', event)">
-              <span class="lang-flag">🇪🇸</span>
-              <span class="lang-name">Español</span>
-              <i class="ri-check-line lang-check"></i>
-            </div>
-            <div class="lang-option" data-lang="ar" onclick="changeLanguage('ar', event)">
-              <span class="lang-flag">🇸🇦</span>
-              <span class="lang-name">العربية</span>
-              <i class="ri-check-line lang-check"></i>
-            </div>
+    
+    <div class="topbar-right">
+      <!-- Language Selector (Console Topbar) -->
+      <div class="lang-selector-container" id="topbar-lang-container">
+        <button type="button" class="lang-selector-btn topbar-lang" onclick="toggleLangDropdown('topbar', event)" id="topbar-lang-btn" title="Changer de langue">
+          <i class="ri-global-line"></i>
+          <span id="topbar-lang-label">FR</span>
+          <i class="ri-arrow-down-s-line" style="font-size: 0.8rem;"></i>
+        </button>
+        <div class="lang-dropdown-menu down" id="topbar-lang-menu">
+          <div class="lang-option active" data-lang="fr" onclick="changeLanguage('fr', event)">
+            <span class="lang-flag">🇫🇷</span>
+            <span class="lang-name">Français</span>
+            <i class="ri-check-line lang-check"></i>
+          </div>
+          <div class="lang-option" data-lang="en" onclick="changeLanguage('en', event)">
+            <span class="lang-flag">🇬🇧</span>
+            <span class="lang-name">English</span>
+            <i class="ri-check-line lang-check"></i>
+          </div>
+          <div class="lang-option" data-lang="es" onclick="changeLanguage('es', event)">
+            <span class="lang-flag">🇪🇸</span>
+            <span class="lang-name">Español</span>
+            <i class="ri-check-line lang-check"></i>
+          </div>
+          <div class="lang-option" data-lang="ar" onclick="changeLanguage('ar', event)">
+            <span class="lang-flag">🇸🇦</span>
+            <span class="lang-name">العربية</span>
+            <i class="ri-check-line lang-check"></i>
           </div>
         </div>
-
-        <!-- Tier Status Pill in Topbar -->
-        <div id="topbar-tier-lock-pill" class="topbar-tier-pill locked">
-          <i class="ri-lock-line"></i>
-          <span id="topbar-tier-lock-text">Verrouillé</span>
-        </div>
       </div>
+      <button class="theme-toggle-btn" onclick="toggleTheme()" style="border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; transition: var(--transition); background: var(--bg-tertiary); color: var(--text-primary);" title="Changer de thème">
+        <i class="ri-sun-line" id="theme-toggle-icon-topbar"></i>
+      </button>
+      <div class="topbar-balance" onclick="goTo('wallet-screen')">
+        <i class="ri-wallet-line" style="color: var(--accent-emerald)"></i>
+        <span>Solde :</span>
+        <span class="topbar-balance-val" id="topbar-balance-val">0 FCFA</span>
+      </div>
+      <div class="user-avatar" id="user-avatar-initials" onclick="handleAvatarClick()" title="Consulter mon Profil">JB</div>
     </div>
   </header>
 
@@ -4380,16 +4240,13 @@
         
         <!-- Left: List of modules -->
         <div>
-          <div class="modules-section-container" style="margin-bottom: 16px;">
-            <!-- Line 1: Clear Title -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <h3 class="tasks-section-title" style="margin-bottom: 0; font-size: 1.15rem; font-weight: 800;" data-i18n="modules_title">
-                Modules d'exercices rémunérés
-              </h3>
-            </div>
-            <!-- Line 2: Status Banner -->
-            <div id="trainer-collateral-status-banner">
-              <!-- Injected by refreshUI() -->
+          <div id="trainer-collateral-status-banner" style="margin-bottom: 18px;">
+            <!-- Injected dynamically by refreshUI() -->
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+            <h3 class="tasks-section-title" style="margin-bottom: 0;" data-i18n="modules_title">Modules d'exercices rémunérés</h3>
+            <div style="display: inline-flex; align-items: center; gap: 10px;">
+              <span id="active-tier-indicator-badge" class="badge badge-emerald" style="font-size: 0.8rem; padding: 4px 10px;">Palier Bronze</span>
             </div>
           </div>
           
@@ -4398,15 +4255,13 @@
               <div class="task-num-circle" id="task-num-captcha">1</div>
               <div class="task-meta-info">
                 <span class="task-title-text">CAPTCHA Intelligent de Précision</span>
+                <div class="task-payout-row">
+                  <span>💰 Gain: 50 FCFA / validation</span>
+                  <span>⏱️ Temps: +5 min</span>
+                </div>
               </div>
             </div>
-            <div class="task-row-bottom-meta">
-              <div class="task-payout-row">
-                <span>💰 Gain: 50 FCFA</span>
-                <span>⏱️ Temps: +5 min</span>
-              </div>
-              <div class="badge badge-red" id="task-badge-captcha">Collatéral Requis</div>
-            </div>
+            <div class="badge badge-emerald" id="task-badge-captcha">Disponible</div>
           </div>
 
           <div class="task-item-row" id="task-row-video" onclick="handleTaskClick('video')">
@@ -4414,15 +4269,13 @@
               <div class="task-num-circle" id="task-num-video">2</div>
               <div class="task-meta-info">
                 <span class="task-title-text">Reconnaissance de qualité vidéo publicitaire</span>
+                <div class="task-payout-row">
+                  <span>💰 Gain: 150 FCFA / évaluation</span>
+                  <span>⏱️ Temps: +10 min</span>
+                </div>
               </div>
             </div>
-            <div class="task-row-bottom-meta">
-              <div class="task-payout-row">
-                <span>💰 Gain: 150 FCFA</span>
-                <span>⏱️ Temps: +10 min</span>
-              </div>
-              <div class="badge badge-red" id="task-badge-video">Collatéral Requis</div>
-            </div>
+            <div class="badge badge-emerald" id="task-badge-video">Disponible</div>
           </div>
 
           <div class="task-item-row locked" id="task-row-text" onclick="handleTaskClick('text')">
@@ -4430,15 +4283,13 @@
               <div class="task-num-circle" id="task-num-text"><i class="ri-lock-line"></i></div>
               <div class="task-meta-info">
                 <span class="task-title-text">Correction et Labellisation de Textes LLM</span>
+                <div class="task-payout-row">
+                  <span>💰 Gain: 400 FCFA / texte</span>
+                  <span>⏱️ Temps: +15 min</span>
+                </div>
               </div>
             </div>
-            <div class="task-row-bottom-meta">
-              <div class="task-payout-row">
-                <span>💰 Gain: 400 FCFA</span>
-                <span>⏱️ Temps: +15 min</span>
-              </div>
-              <div class="badge badge-red" id="task-badge-text">Collatéral Requis</div>
-            </div>
+            <div class="badge badge-red" id="task-badge-text">Palier Silver (25k)</div>
           </div>
 
           <div class="task-item-row locked" id="task-row-audit" onclick="handleTaskClick('audit')">
@@ -4446,15 +4297,13 @@
               <div class="task-num-circle" id="task-num-audit"><i class="ri-lock-line"></i></div>
               <div class="task-meta-info">
                 <span class="task-title-text">Audit Expert de Conversations IA Multi-Agents</span>
+                <div class="task-payout-row">
+                  <span>💰 Gain: 950 FCFA / audit</span>
+                  <span>⏱️ Temps: +25 min</span>
+                </div>
               </div>
             </div>
-            <div class="task-row-bottom-meta">
-              <div class="task-payout-row">
-                <span>💰 Gain: 950 FCFA</span>
-                <span>⏱️ Temps: +25 min</span>
-              </div>
-              <div class="badge badge-red" id="task-badge-audit">Collatéral Requis</div>
-            </div>
+            <div class="badge badge-red" id="task-badge-audit">Palier Gold (45k)</div>
           </div>
         </div>
 
@@ -5435,9 +5284,7 @@
   <!-- ========================================== -->
   <script>
 
-    // ============================================================
     // PRODUCTION STORAGE SANITIZER: ZERO OUT ALL DUMMY BALANCES
-    // ============================================================
     (function sanitizeScaliaStorage() {
       try {
         const isVerified = localStorage.getItem('scalia_collateral_paid_verified') === 'true';
@@ -5446,7 +5293,6 @@
           localStorage.setItem('scalia_balance', '0');
           localStorage.setItem('scalia_daily_earnings', '0');
           localStorage.setItem('scalia_daily_time', '0');
-          localStorage.removeItem('scalia_locked');
         }
       } catch (e) {
         console.warn('[Scalia] Storage sanitize notice:', e);
@@ -6876,7 +6722,6 @@
       localStorage.setItem('scalia_collateral_active', 'true');
       localStorage.setItem('scalia_collateral_paid_verified', 'true');
       state.collateralActive = true;
-      state.collateralActive = true;
 
       // Update state
       state.role = 'entraineur';
@@ -7926,29 +7771,19 @@
         return;
       }
 
-            localStorage.setItem('scalia_session_active', 'true');
+      localStorage.setItem('scalia_session_active', 'true');
       localStorage.setItem('scalia_role', 'entraineur');
       state.role = 'entraineur';
       state.userTier = localStorage.getItem('scalia_tier') || 'bronze';
-      const isVerified = localStorage.getItem('scalia_collateral_paid_verified') === 'true';
-      state.collateralActive = isVerified;
-      state.collateralLocked = isVerified ? (tierParams[state.userTier]?.collateral || 15000) : 0;
-      state.dailyTargetTime = tierParams[state.userTier]?.time || 120;
-      state.balance = isVerified ? (parseInt(localStorage.getItem('scalia_balance')) || 0) : 0;
-      state.dailyEarnings = 0;
-      state.dailyTime = 0;
+      state.collateralLocked = tierParams[state.userTier].collateral;
+      state.dailyTargetTime = tierParams[state.userTier].time;
+      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 0;
 
       const fn = localStorage.getItem('scalia_firstname') || 'Jean';
-      showToast("Connexion Réussie", isVerified ? ("Ravi de vous revoir, " + fn + " !") : ("Bienvenue " + fn + " ! Collatéral requis pour démarrer."));
+      showToast("Connexion Réussie", `Ravi de vous revoir, ${fn} ! Console déverrouillée.`);
       updateNavigationBars();
       updateAuthUI();
       goTo('dresseur-screen');
-
-      if (!isVerified) {
-        setTimeout(() => {
-          openCollateralRecommendationModal(fn);
-        }, 350);
-      }
     }
 
     function signInWithGoogle() {
@@ -8399,13 +8234,9 @@
       }
 
       state.userTier = tierField;
-      const isVerified = localStorage.getItem('scalia_collateral_paid_verified') === 'true';
-      state.collateralActive = isVerified;
-      state.collateralLocked = isVerified ? (tierParams[tierField]?.collateral || 15000) : 0;
-      state.dailyTargetTime = tierParams[tierField]?.time || 120;
-      state.balance = isVerified ? (parseInt(localStorage.getItem('scalia_balance')) || 0) : 0;
-      state.dailyEarnings = 0;
-      state.dailyTime = 0;
+      state.collateralLocked = tierParams[tierField].collateral;
+      state.dailyTargetTime = tierParams[tierField].time;
+      state.balance = parseInt(localStorage.getItem('scalia_balance')) || 0;
 
       const initials = userField.substring(0, 2).toUpperCase();
       localStorage.setItem('scalia_username', userField);
@@ -8416,16 +8247,10 @@
 
       localStorage.setItem('scalia_session_active', 'true');
       saveSessionToLocalStorage();
-      showToast("Connexion Réussie", isVerified ? "Accès accordé à la Console Entraîneur." : "Bienvenue ! Collatéral requis pour démarrer.");
+      showToast("Connexion Réussie", "Accès accordé à la Console Entraîneur.");
       updateNavigationBars();
       updateAuthUI();
       goTo('dresseur-screen');
-
-      if (!isVerified) {
-        setTimeout(() => {
-          openCollateralRecommendationModal(userField);
-        }, 350);
-      }
     }
 
     // ----------------------------------------------------
@@ -8442,32 +8267,21 @@
     }
 
     function refreshUI() {
-      // Check if user has officially paid collateral
-      const isVerified = localStorage.getItem('scalia_collateral_paid_verified') === 'true';
-      state.collateralActive = isVerified;
-      state.collateralLocked = isVerified ? (tierParams[state.userTier]?.collateral || 15000) : 0;
-      state.balance = isVerified ? (parseInt(localStorage.getItem('scalia_balance')) || 0) : 0;
-      if (!isVerified) {
-        state.dailyEarnings = 0;
-        state.dailyTime = 0;
+      // Check if collateral is truly active and deposited
+      const savedCollat = localStorage.getItem('scalia_collateral_active');
+      if (savedCollat === 'false') {
+        state.collateralActive = false;
+        state.collateralLocked = 0;
+      } else {
+        state.collateralActive = true;
+        if (!state.collateralLocked || state.collateralLocked === 0) {
+          state.collateralLocked = tierParams[state.userTier]?.collateral || 15000;
+        }
       }
 
       const hasCollateral = state.collateralActive && state.collateralLocked > 0;
 
-      // Topbar Pill Status
-      const topbarPill = document.getElementById('topbar-tier-lock-pill');
-      const topbarPillText = document.getElementById('topbar-tier-lock-text');
-      if (topbarPill && topbarPillText) {
-        if (hasCollateral) {
-          topbarPill.className = 'topbar-tier-pill unlocked';
-          topbarPill.innerHTML = '<i class="ri-shield-check-line"></i> <span>Palier ' + tierParams[state.userTier].label + '</span>';
-        } else {
-          topbarPill.className = 'topbar-tier-pill locked';
-          topbarPill.innerHTML = '<i class="ri-lock-line"></i> <span>Verrouillé</span>';
-        }
-      }
-
-      // Header stats cards
+      // Header stats
       const dailyEarn = document.getElementById('stats-daily-earnings');
       const targetSal = document.getElementById('stats-target-salary');
       const lockCol = document.getElementById('stats-locked-collateral');
@@ -8493,58 +8307,76 @@
       
       const targetMin = tierParams[state.userTier].time;
       state.dailyTargetTime = targetMin;
-      const pct = hasCollateral ? Math.min(100, Math.round((state.dailyTime / targetMin) * 100)) : 0;
+      const pct = Math.min(100, Math.round((state.dailyTime / targetMin) * 100));
 
       if (timeText) timeText.innerText = state.dailyTime + " min / " + targetMin + " min (" + pct + "%)";
       const hText = (typeof SCALIA_TRANSLATIONS !== "undefined" && SCALIA_TRANSLATIONS[currentLang]) ? SCALIA_TRANSLATIONS[currentLang].hours_per_day : "heures / jour"; 
-      if (targetHoursText) targetHoursText.innerText = hasCollateral ? (tierParams[state.userTier].hours + " " + hText) : ("0 " + hText);
+      if (targetHoursText) targetHoursText.innerText = tierParams[state.userTier].hours + " " + hText;
       if (barFill) barFill.style.width = pct + "%";
 
-      // Status Banner above modules (Clean 2-line structure without test buttons)
+      // Active Tier Indicator Badge
+      const activeTierBadge = document.getElementById('active-tier-indicator-badge');
+      if (activeTierBadge) {
+        if (hasCollateral) {
+          activeTierBadge.className = 'badge badge-emerald';
+          activeTierBadge.innerText = "Palier " + tierParams[state.userTier].label + " Actif";
+        } else {
+          activeTierBadge.className = 'badge badge-red';
+          activeTierBadge.innerText = "Collatéral Inactif";
+        }
+      }
+
+      // Status Banner above modules
       const statusBanner = document.getElementById('trainer-collateral-status-banner');
       if (statusBanner) {
         if (!hasCollateral) {
           statusBanner.innerHTML = `
-            <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(239,68,68,0.15); color: #ef4444; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+            <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(239,68,68,0.15); color: #ef4444; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
                   <i class="ri-lock-2-line"></i>
                 </div>
                 <div>
-                  <div style="font-weight: 700; color: #ef4444; font-size: 0.9rem;">Accès Verrouillé — Collatéral Requis</div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary);">Souscrivez à un palier pour débloquer l'entraînement rémunéré.</div>
+                  <div style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">Console Verrouillée — Collatéral Requis</div>
+                  <div style="font-size: 0.8rem; color: var(--text-secondary);">Souscrivez à un palier pour débloquer l'accès aux exercices rémunérés.</div>
                 </div>
               </div>
-              <button class="btn btn-primary-trainer" onclick="openCollateralRecommendationModal()" style="padding: 8px 18px; font-size: 0.85rem;">
-                <i class="ri-shield-keyhole-line"></i> Déposer mon Collatéral
-              </button>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <button class="btn btn-primary-trainer" onclick="openCollateralModalForTier('bronze')" style="padding: 8px 16px; font-size: 0.85rem;">
+                  <i class="ri-shield-keyhole-line"></i> Souscrire au Collatéral
+                </button>
+                
+              </div>
             </div>
           `;
         } else {
           statusBanner.innerHTML = `
-            <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(16,185,129,0.15); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+            <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 12px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(16,185,129,0.15); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
                   <i class="ri-shield-check-line"></i>
                 </div>
                 <div>
-                  <div style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem;">
-                    Palier ${tierParams[state.userTier].label} Actif : <span style="color: var(--accent-emerald);">${formatCurrency(state.collateralLocked)} sécurisés</span>
+                  <div style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem;">
+                    Collatéral Garanti Actif : <span style="color: var(--accent-emerald);">Palier ${tierParams[state.userTier].label} (${formatCurrency(state.collateralLocked)})</span>
                   </div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary);">
-                    ${state.userTier === 'diamond' ? '⭐ Bonus Plein Temps +20%' : state.userTier === 'platinum' ? '⭐ Bonus Priorité +10%' : 'Exercices débloqués • Collatéral garanti sous séquestre'}
+                  <div style="font-size: 0.8rem; color: var(--text-secondary);">
+                    ${state.userTier === 'diamond' ? '⭐ Bonus Plein Temps +20% sur tous les gains' : state.userTier === 'platinum' ? '⭐ Bonus Priorité +10% sur tous les gains' : 'Exercices débloqués • Dépôt garanti sous séquestre'}
                   </div>
                 </div>
               </div>
-              <button class="btn btn-secondary" onclick="openCollateralModalForTier(state.userTier)" style="padding: 6px 12px; font-size: 0.8rem;">
-                <i class="ri-arrow-up-circle-line"></i> Changer de palier
-              </button>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <button class="btn btn-secondary" onclick="openCollateralModalForTier(state.userTier)" style="padding: 7px 14px; font-size: 0.8rem;">
+                  <i class="ri-arrow-up-circle-line"></i> Changer de palier
+                </button>
+                
+              </div>
             </div>
           `;
         }
       }
 
-      // Task rows lock states
+      // Tier locks & Task rows
       const captchaRow = document.getElementById('task-row-captcha');
       const videoRow = document.getElementById('task-row-video');
       const textRow = document.getElementById('task-row-text');
@@ -8561,7 +8393,7 @@
       const auditBadge = document.getElementById('task-badge-audit');
 
       if (!hasCollateral) {
-        // STRICTLY ALL LOCKED IF NO COLLATERAL
+        // ALL locked if no collateral
         [captchaRow, videoRow, textRow, auditRow].forEach(r => r && r.classList.add('locked'));
         if (captchaNum) captchaNum.innerHTML = '<i class="ri-lock-line"></i>';
         if (videoNum) videoNum.innerHTML = '<i class="ri-lock-line"></i>';
@@ -8573,7 +8405,7 @@
         if (textBadge) { textBadge.className = 'badge badge-red'; textBadge.innerText = 'Collatéral Requis'; }
         if (auditBadge) { auditBadge.className = 'badge badge-red'; auditBadge.innerText = 'Collatéral Requis'; }
 
-        // Workspace Gate Card
+        // In workspace: show gate view if not doing task
         const gateView = document.getElementById('task-collateral-gate-view');
         const emptyState = document.getElementById('task-empty-state');
         if (!currentTask) {
@@ -8581,12 +8413,13 @@
           if (emptyState) emptyState.style.display = 'none';
         }
       } else {
+        // Has collateral: hide gate view
         const gateView = document.getElementById('task-collateral-gate-view');
         const emptyState = document.getElementById('task-empty-state');
         if (gateView) gateView.style.display = 'none';
         if (!currentTask && emptyState) emptyState.style.display = 'block';
 
-        // Bronze unlocks Captcha & Video
+        // Captcha & Video unlocked for all collateral tiers (Bronze+)
         if (captchaRow) {
           captchaRow.classList.remove('locked');
           if (captchaNum) captchaNum.innerText = '1';
@@ -8598,7 +8431,7 @@
           if (videoBadge) { videoBadge.className = 'badge badge-emerald'; videoBadge.innerText = 'Disponible'; }
         }
 
-        // Silver unlocks Text
+        // Text: Silver+
         const isSilverPlus = ['silver', 'gold', 'platinum', 'diamond'].includes(state.userTier);
         if (textRow) {
           if (isSilverPlus) {
@@ -8612,7 +8445,7 @@
           }
         }
 
-        // Gold unlocks Audit
+        // Audit: Gold+
         const isGoldPlus = ['gold', 'platinum', 'diamond'].includes(state.userTier);
         if (auditRow) {
           if (isGoldPlus) {
