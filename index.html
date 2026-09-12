@@ -255,14 +255,16 @@
       width: 100%;
       min-height: var(--fomo-banner-height);
       box-sizing: border-box;
-      padding: 10px 20px;
+      padding: 8px 16px;
       text-align: center;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      row-gap: 6px;
+      column-gap: 12px;
       position: sticky;
       top: 0;
       z-index: 950;
@@ -275,15 +277,20 @@
       right: 0;
       z-index: 1000;
     }
-    @media (max-width: 768px) {
-      :root {
-        --fomo-banner-height: 64px;
+    @media (max-width: 1200px) {
+      .fomo-top-banner {
+        font-size: 0.82rem;
+        padding: 6px 12px;
+        row-gap: 4px;
+        column-gap: 8px;
       }
+    }
+    @media (max-width: 768px) {
       .fomo-top-banner {
         flex-direction: column;
-        gap: 6px;
-        font-size: 0.82rem;
-        padding: 8px 12px;
+        gap: 5px;
+        font-size: 0.80rem;
+        padding: 6px 10px;
       }
     }
 
@@ -648,15 +655,18 @@
       display: flex;
       top: var(--fomo-banner-height);
       height: calc(100vh - var(--fomo-banner-height));
+      transition: top 0.15s ease, height 0.15s ease;
     }
     body.console-mode .topbar {
       display: flex;
       top: var(--fomo-banner-height);
+      transition: top 0.15s ease;
     }
     body.console-mode .main-content {
       margin-left: 260px;
-      padding: calc(100px + var(--fomo-banner-height)) 30px 40px 30px;
+      padding: calc(90px + var(--fomo-banner-height)) 30px 40px 30px;
       min-height: 100vh;
+      transition: padding-top 0.15s ease;
     }
     
     @media (max-width: 991px) {
@@ -664,7 +674,7 @@
       body.console-mode .topbar { left: 0; }
       body.console-mode .main-content {
         margin-left: 0;
-        padding: calc(100px + var(--fomo-banner-height)) 15px 80px 15px;
+        padding: calc(90px + var(--fomo-banner-height)) 15px 80px 15px;
       }
       body.console-mode .bottom-mobile-nav { display: flex !important; }
     }
@@ -6648,7 +6658,29 @@
       if (onboardTicker) {
         onboardTicker.innerText = `${recentCount} nouvelles inscriptions !`;
       }
+      syncFomoBannerHeight();
     }
+
+    // Synchronize --fomo-banner-height dynamically in real time with actual DOM height
+    function syncFomoBannerHeight() {
+      const banner = document.getElementById('global-fomo-banner');
+      if (banner) {
+        const height = Math.round(banner.getBoundingClientRect().height);
+        if (height > 0) {
+          document.documentElement.style.setProperty('--fomo-banner-height', `${height}px`);
+        }
+      }
+    }
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const bannerEl = document.getElementById('global-fomo-banner');
+      if (bannerEl) {
+        new ResizeObserver(() => syncFomoBannerHeight()).observe(bannerEl);
+      }
+    }
+    window.addEventListener('resize', syncFomoBannerHeight);
+    window.addEventListener('DOMContentLoaded', syncFomoBannerHeight);
+    window.addEventListener('load', syncFomoBannerHeight);
 
     // ----------------------------------------------------
     // IMAGE TRANSPARENCY CANVAS HELPER
@@ -7160,6 +7192,7 @@
 
       window.scrollTo(0, 0);
       refreshUI();
+      syncFomoBannerHeight();
       if (screenId === 'landing-screen') {
         updateAuthUI();
       } else if (screenId === 'onboarding-screen') {
