@@ -250,7 +250,7 @@
     .badge-gold { background: var(--accent-gold-soft); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.2); }
     .badge-red { background: var(--accent-red-soft); color: var(--accent-red); border: 1px solid rgba(244, 63, 94, 0.2); }
 
-    /* FOMO URGENCY BANNER (AUTO-SLIDING COMPACT TICKER) */
+    /* FOMO URGENCY BANNER (HORIZONTAL CONTINUOUS TICKER) */
     .fomo-top-banner {
       width: 100%;
       height: var(--fomo-banner-height);
@@ -260,7 +260,6 @@
       padding: 0 16px;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 12px;
       position: sticky;
       top: 0;
@@ -277,44 +276,74 @@
       z-index: 1000;
     }
 
-    .fomo-slider-track {
-      position: relative;
-      height: 28px;
+    .fomo-fixed-label {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      padding-right: 12px;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+      z-index: 2;
+    }
+
+    body.light-mode .fomo-fixed-label {
+      border-right-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .fomo-label-text {
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #ef4444;
+    }
+
+    .fomo-marquee-wrapper {
+      display: flex;
       overflow: hidden;
       flex-grow: 1;
-      max-width: 700px;
+      position: relative;
+      user-select: none;
+      mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
     }
 
-    .fomo-slide-item {
-      position: absolute;
-      left: 0;
-      right: 0;
+    .fomo-marquee-track {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 0.84rem;
+      gap: 20px;
+      flex-shrink: 0;
+      padding-left: 20px;
+      will-change: transform;
+      animation: marqueeHorizontal 26s linear infinite;
+    }
+
+    .fomo-marquee-wrapper:hover .fomo-marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeHorizontal {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .fomo-marquee-item {
+      font-size: 0.83rem;
       font-weight: 600;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
       white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .fomo-slide-item.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .fomo-slide-item.exit {
-      opacity: 0;
-      transform: translateY(-14px);
+    .fomo-marquee-sep {
+      color: var(--accent-emerald);
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
 
     @media (max-width: 768px) {
@@ -322,8 +351,20 @@
         padding: 0 8px;
         gap: 8px;
       }
-      .fomo-slide-item {
-        font-size: 0.77rem;
+      .fomo-fixed-label {
+        padding-right: 6px;
+        gap: 6px;
+      }
+      .fomo-label-text {
+        display: none;
+      }
+      .fomo-marquee-track {
+        animation-duration: 20s;
+        gap: 15px;
+        padding-left: 15px;
+      }
+      .fomo-marquee-item {
+        font-size: 0.78rem;
       }
     }
 
@@ -2451,16 +2492,30 @@
   <!-- FOMO TOP URGENCY BANNER (50 000 PLACES)    -->
   <!-- ========================================== -->
   <div class="fomo-top-banner" id="global-fomo-banner">
-    <span class="fomo-pulse-dot" style="flex-shrink: 0;" title="Alerte Recrutement"></span>
-    <div class="fomo-slider-track" id="fomo-slider-track">
-      <div class="fomo-slide-item active" id="fomo-slide-1">
-        <span><strong>PHASE FINALE DE RECRUTEMENT</strong> — Quota de <strong>50 000 places</strong></span>
+    <div class="fomo-fixed-label">
+      <span class="fomo-pulse-dot" title="Alerte Recrutement Direct"></span>
+      <span class="fomo-label-text">EN DIRECT</span>
+    </div>
+    <div class="fomo-marquee-wrapper">
+      <div class="fomo-marquee-track">
+        <span class="fomo-marquee-item"><strong>PHASE FINALE DE RECRUTEMENT</strong> — Quota de <strong>50 000 places</strong></span>
+        <span class="fomo-marquee-sep">•</span>
+        <span class="fomo-marquee-item">Plus que <strong class="fomo-seats-badge" id="fomo-seats-counter">38 556</strong> places disponibles avant fermeture !</span>
+        <span class="fomo-marquee-sep">•</span>
+        <span class="fomo-marquee-item fomo-ticker-msg" id="fomo-ticker-live"><i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> +6 nouvelles inscriptions !</span>
+        <span class="fomo-marquee-sep">•</span>
+        <span class="fomo-marquee-item">Rémunération garantie pour l'entraînement d'IA</span>
+        <span class="fomo-marquee-sep">•</span>
       </div>
-      <div class="fomo-slide-item" id="fomo-slide-2">
-        <span>Plus que <strong class="fomo-seats-badge" id="fomo-seats-counter">38 556</strong> places disponibles avant fermeture !</span>
-      </div>
-      <div class="fomo-slide-item" id="fomo-slide-3">
-        <span class="fomo-ticker-msg" id="fomo-ticker-live"><i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> +6 nouvelles inscriptions !</span>
+      <div class="fomo-marquee-track" aria-hidden="true">
+        <span class="fomo-marquee-item"><strong>PHASE FINALE DE RECRUTEMENT</strong> — Quota de <strong>50 000 places</strong></span>
+        <span class="fomo-marquee-sep">•</span>
+        <span class="fomo-marquee-item">Plus que <strong class="fomo-seats-badge" id="fomo-seats-counter-dup">38 556</strong> places disponibles avant fermeture !</span>
+        <span class="fomo-marquee-sep">•</span>
+        <span class="fomo-marquee-item fomo-ticker-msg" id="fomo-ticker-live-dup"><i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> +6 nouvelles inscriptions !</span>
+        <span class="fomo-marquee-sep">•</span>
+        <span class="fomo-marquee-item">Rémunération garantie pour l'entraînement d'IA</span>
+        <span class="fomo-marquee-sep">•</span>
       </div>
     </div>
   </div>
@@ -6673,24 +6728,24 @@
 
     function updateFomoUI(recentCount) {
       const topBadge = document.getElementById('fomo-seats-counter');
+      const topBadgeDup = document.getElementById('fomo-seats-counter-dup');
       const onboardBadge = document.getElementById('onboard-fomo-seats');
       const ticker = document.getElementById('fomo-ticker-live');
+      const tickerDup = document.getElementById('fomo-ticker-live-dup');
       const onboardTicker = document.getElementById('onboard-fomo-recent');
 
       const formatted = formatNumber(remainingSeats);
       if (topBadge) topBadge.innerText = formatted;
+      if (topBadgeDup) topBadgeDup.innerText = formatted;
       if (onboardBadge) onboardBadge.innerText = formatted;
 
       const cities = ["Douala", "Abidjan", "Yaoundé", "Dakar", "Cotonou", "Lomé", "Bafoussam", "Libreville", "Bamako"];
       const city = cities[Math.floor(Math.random() * cities.length)];
       const msg = `+${recentCount} nouvelles inscriptions (${city}) !`;
+      const htmlMsg = `<i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> ${msg}`;
 
-      if (ticker) {
-        ticker.innerHTML = `<i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> ${msg}`;
-        ticker.style.animation = 'none';
-        ticker.offsetHeight; // reflow
-        ticker.style.animation = 'flashTicker 1s ease-in-out';
-      }
+      if (ticker) ticker.innerHTML = htmlMsg;
+      if (tickerDup) tickerDup.innerHTML = htmlMsg;
 
       if (onboardTicker) {
         onboardTicker.innerText = `${recentCount} nouvelles inscriptions !`;
@@ -6718,31 +6773,6 @@
     window.addEventListener('resize', syncFomoBannerHeight);
     window.addEventListener('DOMContentLoaded', syncFomoBannerHeight);
     window.addEventListener('load', syncFomoBannerHeight);
-
-    // Auto-sliding FOMO ticker controller (smooth vertical slide every 3.5s)
-    let currentFomoSlideIdx = 0;
-    const fomoSlideIds = ['fomo-slide-1', 'fomo-slide-2', 'fomo-slide-3'];
-
-    function rotateFomoSlide() {
-      const slides = fomoSlideIds.map(id => document.getElementById(id)).filter(Boolean);
-      if (slides.length < 2) return;
-
-      const currentSlide = slides[currentFomoSlideIdx];
-      if (currentSlide) {
-        currentSlide.classList.remove('active');
-        currentSlide.classList.add('exit');
-        setTimeout(() => {
-          currentSlide.classList.remove('exit');
-        }, 450);
-      }
-
-      currentFomoSlideIdx = (currentFomoSlideIdx + 1) % slides.length;
-      if (slides[currentFomoSlideIdx]) {
-        slides[currentFomoSlideIdx].classList.add('active');
-      }
-    }
-
-    setInterval(rotateFomoSlide, 3500);
 
     // ----------------------------------------------------
     // IMAGE TRANSPARENCY CANVAS HELPER
