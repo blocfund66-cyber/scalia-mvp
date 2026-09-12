@@ -45,7 +45,7 @@
     /* DESIGN SYSTEM & CUSTOM VARIABLES                     */
     /* ==================================================== */
     :root {
-      --fomo-banner-height: 44px;
+      --fomo-banner-height: 38px;
       --bg-dark: #070913;
       --bg-card: rgba(15, 22, 42, 0.45);
       --bg-card-hover: rgba(22, 30, 56, 0.65);
@@ -250,24 +250,23 @@
     .badge-gold { background: var(--accent-gold-soft); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.2); }
     .badge-red { background: var(--accent-red-soft); color: var(--accent-red); border: 1px solid rgba(244, 63, 94, 0.2); }
 
-    /* FOMO URGENCY BANNER */
+    /* FOMO URGENCY BANNER (AUTO-SLIDING COMPACT TICKER) */
     .fomo-top-banner {
       width: 100%;
+      height: var(--fomo-banner-height);
       min-height: var(--fomo-banner-height);
+      max-height: var(--fomo-banner-height);
       box-sizing: border-box;
-      padding: 8px 16px;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 600;
+      padding: 0 16px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      row-gap: 6px;
-      column-gap: 12px;
+      gap: 12px;
       position: sticky;
       top: 0;
       z-index: 950;
+      overflow: hidden;
+      white-space: nowrap;
       transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
     body.console-mode .fomo-top-banner {
@@ -277,20 +276,54 @@
       right: 0;
       z-index: 1000;
     }
-    @media (max-width: 1200px) {
-      .fomo-top-banner {
-        font-size: 0.82rem;
-        padding: 6px 12px;
-        row-gap: 4px;
-        column-gap: 8px;
-      }
+
+    .fomo-slider-track {
+      position: relative;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-grow: 1;
+      max-width: 700px;
     }
+
+    .fomo-slide-item {
+      position: absolute;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.84rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .fomo-slide-item.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .fomo-slide-item.exit {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+
     @media (max-width: 768px) {
       .fomo-top-banner {
-        flex-direction: column;
-        gap: 5px;
-        font-size: 0.80rem;
-        padding: 6px 10px;
+        padding: 0 8px;
+        gap: 8px;
+      }
+      .fomo-slide-item {
+        font-size: 0.77rem;
       }
     }
 
@@ -2418,13 +2451,17 @@
   <!-- FOMO TOP URGENCY BANNER (50 000 PLACES)    -->
   <!-- ========================================== -->
   <div class="fomo-top-banner" id="global-fomo-banner">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span class="fomo-pulse-dot"></span>
-      <span style="letter-spacing: 0.02em;"><strong>PHASE FINALE DE RECRUTEMENT</strong> — Quota de <strong>50 000 places</strong> :</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <span>Plus que <strong class="fomo-seats-badge" id="fomo-seats-counter">38 556</strong> places disponibles avant fermeture !</span>
-      <span class="fomo-ticker-msg" id="fomo-ticker-live"><i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> +6 nouvelles inscriptions !</span>
+    <span class="fomo-pulse-dot" style="flex-shrink: 0;" title="Alerte Recrutement"></span>
+    <div class="fomo-slider-track" id="fomo-slider-track">
+      <div class="fomo-slide-item active" id="fomo-slide-1">
+        <span><strong>PHASE FINALE DE RECRUTEMENT</strong> — Quota de <strong>50 000 places</strong></span>
+      </div>
+      <div class="fomo-slide-item" id="fomo-slide-2">
+        <span>Plus que <strong class="fomo-seats-badge" id="fomo-seats-counter">38 556</strong> places disponibles avant fermeture !</span>
+      </div>
+      <div class="fomo-slide-item" id="fomo-slide-3">
+        <span class="fomo-ticker-msg" id="fomo-ticker-live"><i class="ri-user-add-line" style="color: var(--accent-emerald);"></i> +6 nouvelles inscriptions !</span>
+      </div>
     </div>
   </div>
 
@@ -6681,6 +6718,31 @@
     window.addEventListener('resize', syncFomoBannerHeight);
     window.addEventListener('DOMContentLoaded', syncFomoBannerHeight);
     window.addEventListener('load', syncFomoBannerHeight);
+
+    // Auto-sliding FOMO ticker controller (smooth vertical slide every 3.5s)
+    let currentFomoSlideIdx = 0;
+    const fomoSlideIds = ['fomo-slide-1', 'fomo-slide-2', 'fomo-slide-3'];
+
+    function rotateFomoSlide() {
+      const slides = fomoSlideIds.map(id => document.getElementById(id)).filter(Boolean);
+      if (slides.length < 2) return;
+
+      const currentSlide = slides[currentFomoSlideIdx];
+      if (currentSlide) {
+        currentSlide.classList.remove('active');
+        currentSlide.classList.add('exit');
+        setTimeout(() => {
+          currentSlide.classList.remove('exit');
+        }, 450);
+      }
+
+      currentFomoSlideIdx = (currentFomoSlideIdx + 1) % slides.length;
+      if (slides[currentFomoSlideIdx]) {
+        slides[currentFomoSlideIdx].classList.add('active');
+      }
+    }
+
+    setInterval(rotateFomoSlide, 3500);
 
     // ----------------------------------------------------
     // IMAGE TRANSPARENCY CANVAS HELPER
