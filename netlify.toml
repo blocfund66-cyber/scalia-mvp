@@ -1,0 +1,8 @@
+[build]
+  command = "npm --prefix scalia-react install && npm --prefix scalia-react run build"
+  publish = "scalia-react/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

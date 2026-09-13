@@ -1,0 +1,199 @@
+/* ==================================================== */
+/* FOMO URGENCY BANNER (MOBILE-FIRST)                   */
+/* ==================================================== */
+
+.fomo-top-banner {
+  width: 100%;
+  height: var(--fomo-banner-height);
+  min-height: var(--fomo-banner-height);
+  max-height: var(--fomo-banner-height);
+  box-sizing: border-box;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 950;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+body.console-mode .fomo-top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.fomo-fixed-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+body.light-mode .fomo-fixed-label {
+  border-right-color: rgba(0, 0, 0, 0.12);
+}
+
+.fomo-label-text {
+  display: none;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #ef4444;
+}
+
+.fomo-marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  flex-grow: 1;
+  position: relative;
+  user-select: none;
+  mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 14px, black calc(100% - 14px), transparent);
+}
+
+.fomo-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  padding-left: 15px;
+  will-change: transform;
+  animation: marqueeHorizontal 20s linear infinite;
+}
+
+.fomo-marquee-wrapper:hover .fomo-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeHorizontal {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.fomo-marquee-item {
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fomo-marquee-sep {
+  color: var(--accent-emerald);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .fomo-top-banner {
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .fomo-fixed-label {
+    padding-right: 12px;
+    gap: 8px;
+  }
+  .fomo-label-text {
+    display: block;
+  }
+  .fomo-marquee-track {
+    animation-duration: 26s;
+    gap: 20px;
+    padding-left: 20px;
+  }
+  .fomo-marquee-item {
+    font-size: 0.83rem;
+  }
+}
+
+/* Banner in Light Mode */
+body.light-mode .fomo-top-banner {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+body.light-mode .fomo-ticker-msg {
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+/* Banner in Dark Mode */
+body:not(.light-mode) .fomo-top-banner {
+  background: #0d1322;
+  color: #f8fafc;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--border-color);
+}
+body:not(.light-mode) .fomo-ticker-msg {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.fomo-pulse-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 10px #ef4444;
+  animation: pulseAlert 1.2s infinite;
+}
+
+@keyframes pulseAlert {
+  0% { transform: scale(0.9); opacity: 0.85; box-shadow: 0 0 4px #ef4444; }
+  50% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 14px rgba(239, 68, 68, 0.85); }
+  100% { transform: scale(0.9); opacity: 0.85; box-shadow: 0 0 4px #ef4444; }
+}
+
+.fomo-seats-badge {
+  background: #dc2626;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid #b91c1c;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+@media (min-width: 768px) {
+  .fomo-seats-badge {
+    padding: 3px 9px;
+    font-size: 0.92rem;
+  }
+}
+
+.fomo-ticker-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  padding: 3px 10px;
+  border-radius: 12px;
+  animation: flashTicker 1s ease-in-out;
+}
+
+@keyframes flashTicker {
+  0% { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; transform: scale(1.05); }
+  100% { background: #f1f5f9; color: #0f172a; border-color: #e2e8f0; transform: scale(1); }
+}

@@ -1,0 +1,68 @@
+/* Variables CSS */
+:root {
+  --fomo-banner-height: 38px;
+  --bg-dark: #070913;
+  --bg-card: rgba(15, 22, 42, 0.45);
+  --bg-card-hover: rgba(22, 30, 56, 0.65);
+  --bg-tertiary: rgba(255, 255, 255, 0.04);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(16, 185, 129, 0.4);
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --accent-emerald: #10b981;
+  --accent-emerald-soft: rgba(16, 185, 129, 0.1);
+  --accent-cyan: #06b6d4;
+  --accent-cyan-soft: rgba(6, 182, 212, 0.1);
+  --accent-indigo: #6366f1;
+  --accent-indigo-soft: rgba(99, 102, 241, 0.1);
+  --accent-purple: #8b5cf6;
+  --accent-purple-soft: rgba(139, 92, 246, 0.1);
+  --accent-red: #f43f5e;
+  --accent-red-soft: rgba(244, 63, 94, 0.1);
+  --accent-gold: #f59e0b;
+  --accent-gold-soft: rgba(245, 158, 11, 0.1);
+  
+  --glow-emerald: 0 0 20px rgba(16, 185, 129, 0.25);
+  --glow-red: 0 0 20px rgba(244, 63, 94, 0.3);
+  --glow-indigo: 0 0 20px rgba(99, 102, 241, 0.25);
+  
+  --font-body: 'Outfit', sans-serif;
+  --font-title: 'Space Grotesk', sans-serif;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --progress-track-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* LIGHT THEME (DEFAULT) */
+body.light-mode {
+  --bg-dark: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-tertiary: #f8fafc;
+  --border-color: #e2e8f0;
+  --border-active: rgba(16, 185, 129, 0.6);
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --accent-emerald: #059669;
+  --accent-emerald-soft: rgba(5, 150, 105, 0.12);
+  --accent-cyan: #0891b2;
+  --accent-cyan-soft: rgba(8, 145, 178, 0.12);
+  --accent-indigo: #4f46e5;
+  --accent-indigo-soft: rgba(79, 70, 229, 0.12);
+  --accent-purple: #7c3aed;
+  --accent-purple-soft: rgba(124, 58, 237, 0.12);
+  --accent-red: #e11d48;
+  --accent-red-soft: rgba(225, 29, 72, 0.12);
+  --accent-gold: #d97706;
+  --accent-gold-soft: rgba(217, 119, 6, 0.12);
+  
+  --glow-emerald: 0 4px 14px rgba(5, 150, 105, 0.2);
+  --glow-red: 0 4px 14px rgba(225, 29, 72, 0.25);
+  --glow-indigo: 0 4px 14px rgba(79, 70, 229, 0.2);
+  --progress-track-bg: #e2e8f0;
+}

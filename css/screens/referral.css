@@ -1,0 +1,53 @@
+/* ---------------------------------------------------- */
+/* REFERRAL SCREEN STYLES (MOBILE-FIRST)                */
+/* ---------------------------------------------------- */
+@import url('./wallet.css');
+
+.referral-link-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.referral-link-row .form-text-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: monospace;
+  font-size: 0.82rem;
+  padding: 10px 10px;
+}
+
+.referral-link-row .btn {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 600px) {
+  .referral-link-row {
+    gap: 10px;
+  }
+  .referral-link-row .form-text-input {
+    font-size: 0.88rem;
+    padding: 12px 14px;
+  }
+  .referral-link-row .btn {
+    padding: 12px 20px;
+    font-size: 0.92rem;
+  }
+}
+
+.referral-sim-result-box {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  padding: 14px 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}

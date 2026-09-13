@@ -1,0 +1,186 @@
+/* ==================================================== */
+/* TOPBAR STYLES (MOBILE-FIRST)                         */
+/* ==================================================== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  padding: 0 10px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 800;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
+  transition: top 0.15s ease, left 0.15s ease, height 0.15s ease, padding 0.15s ease;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+#topbar-title-text {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.lang-selector-btn.topbar-lang {
+  padding: 3px 6px;
+  font-size: 0.72rem;
+  border-radius: 8px;
+  gap: 3px;
+}
+.lang-selector-btn.topbar-lang .ri-arrow-down-s-line {
+  display: none;
+}
+.theme-toggle-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  padding: 0;
+  outline: none;
+}
+.theme-toggle-btn:hover {
+  background: var(--bg-hover, rgba(255,255,255,0.08));
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald);
+  transform: translateY(-1px);
+}
+.topbar-balance {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  gap: 5px;
+  background: var(--accent-emerald-soft);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  user-select: none;
+  color: var(--text-primary);
+}
+.topbar-balance:hover {
+  border-color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.18);
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.2);
+  transform: translateY(-1px);
+}
+.topbar-balance:active {
+  transform: translateY(0);
+}
+.topbar-balance.active {
+  border-color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.24);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+}
+.topbar-balance span:not(.topbar-balance-val) {
+  display: inline;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.topbar-balance i { font-size: 0.95rem; }
+.topbar-balance-val {
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--accent-emerald);
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 0.72rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-emerald));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+}
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* TABLET AND DESKTOP (> 991px) */
+@media (min-width: 992px) {
+  .topbar {
+    left: 260px;
+    height: 64px;
+    padding: 0 24px;
+    box-shadow: none;
+  }
+  #topbar-title-text {
+    font-size: 1.1rem;
+  }
+  .topbar-right {
+    gap: 10px;
+  }
+  .lang-selector-btn.topbar-lang {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    gap: 6px;
+  }
+  .lang-selector-btn.topbar-lang .ri-arrow-down-s-line {
+    display: inline-block;
+  }
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  .topbar-balance {
+    padding: 6px 14px;
+    gap: 7px;
+    border-radius: 9999px;
+  }
+  .topbar-balance span:not(.topbar-balance-val) {
+    display: inline;
+  }
+  .topbar-balance i { font-size: 1rem; }
+  .topbar-balance-val {
+    font-size: 0.9rem;
+  }
+  .user-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.95rem;
+  }
+}

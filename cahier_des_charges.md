@@ -84,4 +84,51 @@ Scalia MVP est une plateforme de micro-travail dans le domaine de l'intelligence
   - **Titans mondiaux de l'IA :** OpenAI, Anthropic, Mistral AI, Google DeepMind, Hugging Face, Scale AI, Cohere.
   - **Startups & Labs spécialisés / émergents :** Kili Technology (Annotation), AfriNLP Labs (Langues Africaines), Labelbox (Data Engine), Neuropulse AI (Vision Médicale), Baobab DataWorks (Datasets Régionaux), Cognitio Research (Audit Multi-Agents), Synthetix Vision (Véhicules Autonomes), DataWeave Dynamics (E-Commerce IA), Turing Data Hub (Workforce Cloud), Voxellence AI (Reconnaissance Vocale).
 
+---
 
+## 9. Spécifications des Modules Restants & Feuille de Route d'Excellence
+
+### 9.1. Centre de Notifications Augmenté & Journalisation d'Événements
+1. **Système de Filtres par Catégorie :**
+   - **Toutes :** Flux chronologique consolidé.
+   - **Gains & Tâches :** Historique automatique à chaque exercice validé (+50 FCFA, +150 FCFA, etc.).
+   - **Finances & Collatéral :** Dépôts de séquestre, activations de palier, demandes de retrait Mobile Money.
+   - **Qualité & Système :** Avertissements RLHF, conseils d'entraînement, alertes d'inactivité.
+2. **Génération Dynamique d'Événements Persistants :**
+   - Chaque validation de tâche, demande de retrait ou changement de palier alimente un journal horodaté (`scalia_notifications_history`).
+   - Horodatage dynamique en français (*« À l'instant »*, *« Il y a 5 min »*, *« Aujourd'hui à 14:32 »*).
+3. **Gestion Avancée de Lecture & Suppression :**
+   - Statut lu/non-lu par carte, possibilité de supprimer individuellement ou d'effacer tout l'historique.
+
+### 9.2. Banque Dynamique de Tâches d'Entraînement Renouvelables (Pool Multi-Tâches)
+1. **Rotation Continue sans Blocage :**
+   - Déploiement d'un pool d'au moins 4 exercices distincts par module pour renouveler les sessions de travail.
+2. **Contenu Détaillé par Module :**
+   - **Module 1 (CAPTCHA) :** 4 scénarios (Feux tricolores, Passages piétons, Autobus urbains, Voitures).
+   - **Module 2 (Vidéo Ad) :** 4 scénarios vidéo (Fintech Mobile Money, E-Santé téléconsultation, Logistique express, Agritech prédictive).
+   - **Module 3 (Correction LLM) :** 4 études de cas (Géographie, Histoire politique, Formules biochimiques, Économie régionale).
+   - **Module 4 (Audit Multi-Agents) :** 4 dialogues critiques (Arbitrage financier, Éthique & IA responsable, Sécurité cloud, Diagnostic médical).
+3. **Compteur Quotidien & Progression :**
+   - Affichage du nombre de tâches accomplies sur la journée et crédit immédiat du temps vers le quota horaire du palier.
+
+### 9.3. Espace « Mon Profil & Paramètres Entraîneur »
+1. **Fiche d'Identité Entraîneur :**
+   - Affichage de l'identifiant unique (`COACH-XXXX`), Prénom, Nom, Email, Pays et Ville.
+2. **Configuration des Paiements Mobile Money :**
+   - Définition du numéro Mobile Money par défaut et sélection de l'opérateur (MTN MoMo ou Orange Money).
+3. **Attestation & Certificat d'Entraîneur IA :**
+   - Génération et affichage de l'attestation officielle de conformité RLHF de Scalia avec cachet de garantie du collatéral.
+4. **Sécurité :**
+   - Modification locale du mot de passe de connexion.
+
+### 9.4. Cadre Juridique, CGU & Charte du Collatéral Sous Séquestre
+1. **Modale Complète des CGU :**
+   - Définition des devoirs de l'entraîneur d'IA, clauses de restitution intégrale du collatéral à 100%, conditions de retrait quotidien et politique de confidentialité des données.
+2. **Accessibilité :**
+   - Consultable depuis le footer, l'on-boarding, la modale de recommandation de palier et les paramètres du profil.
+
+### 9.5. Couche Backend & Intégration Webhook Reeserva
+1. **Webhook Reeserva Automatisé (`POST /api/webhook/reeserva`) :**
+   - Réception serveur des notifications de paiement confirmées par Reeserva pour activer automatiquement le collatéral de l'entraîneur.
+2. **API de Retrait (`POST /api/payout/request`) :**
+   - Enregistrement des demandes de retrait avec génération d'un numéro de reçu officiel `TX-MM-XXXX`.

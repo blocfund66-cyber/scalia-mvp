@@ -1,0 +1,19 @@
+/* Badges CSS */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1;
+}
+.badge-emerald { background: var(--accent-emerald-soft); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.2); }
+.badge-cyan { background: var(--accent-cyan-soft); color: var(--accent-cyan); border: 1px solid rgba(6, 182, 212, 0.2); }
+.badge-indigo { background: var(--accent-indigo-soft); color: var(--accent-indigo); border: 1px solid rgba(99, 102, 241, 0.2); }
+.badge-gold { background: var(--accent-gold-soft); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.2); }
+.badge-red { background: var(--accent-red-soft); color: var(--accent-red); border: 1px solid rgba(244, 63, 94, 0.2); }

@@ -4,8 +4,11 @@
   "description": "Scalia - Plateforme de Travail & Entraînement d'IA Rémunéré",
   "main": "server.js",
   "scripts": {
+    "build": "npm --prefix scalia-react install && npm --prefix scalia-react run build",
     "start": "node server.js",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "react:dev": "npm --prefix scalia-react run dev",
+    "react:build": "npm --prefix scalia-react run build"
   },
   "keywords": [
     "scalia",

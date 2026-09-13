@@ -1,0 +1,417 @@
+/* ---------------------------------------------------- */
+/* LANDING SCREEN STYLES                                */
+/* ---------------------------------------------------- */
+.landing-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 14px;
+}
+@media (min-width: 768px) {
+  .landing-container {
+    padding: 0 20px;
+  }
+}
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  margin: 0;
+  position: sticky;
+  top: var(--fomo-banner-height, 38px);
+  z-index: 900;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+body.light-mode .landing-header {
+  background: rgba(255, 255, 255, 0.96);
+}
+body:not(.light-mode) .landing-header {
+  background: rgba(13, 19, 34, 0.94);
+}
+@media (min-width: 768px) {
+  .landing-header {
+    padding: 14px 0;
+  }
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-title);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+@media (min-width: 768px) {
+  .logo-container {
+    gap: 10px;
+    font-size: 1.5rem;
+  }
+}
+.landing-nav {
+  display: none;
+}
+@media (min-width: 768px) {
+  .landing-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+}
+.landing-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+.landing-nav a:hover {
+  color: var(--text-primary);
+}
+
+/* Header console button responsive text */
+.header-console-btn {
+  padding: 6px 11px !important;
+  font-size: 0.82rem !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+  border-radius: 9999px !important;
+}
+.header-console-short {
+  display: inline !important;
+}
+.header-console-full {
+  display: none !important;
+}
+@media (min-width: 992px) {
+  .header-console-btn {
+    padding: 8px 16px !important;
+    font-size: 0.88rem !important;
+    gap: 8px !important;
+    border-radius: 12px !important;
+  }
+  .header-console-short {
+    display: none !important;
+  }
+  .header-console-full {
+    display: inline !important;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 50px 16px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.hero-title {
+  font-size: clamp(2.1rem, 5vw, 3.8rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+}
+.hero-actions .btn {
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+  text-align: center;
+}
+@media (min-width: 576px) {
+  .hero-actions .btn {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* Stats Counter Band */
+.stats-counter-band {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 40px auto 70px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+@media (min-width: 768px) {
+  .stats-counter-band {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.counter-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-family: var(--font-title);
+  color: var(--accent-emerald);
+}
+.counter-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Concept & Opportunities Grid */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-bottom: 80px;
+}
+.concept-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.concept-card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--accent-emerald-soft);
+  color: var(--accent-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.concept-title {
+  font-size: 1.25rem;
+  margin-top: 5px;
+}
+.concept-desc {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.concept-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: auto;
+}
+.concept-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.concept-features li i {
+  color: var(--accent-emerald);
+}
+
+/* Referral Showcase on Landing Page (Mobile-First) */
+.landing-referral-section {
+  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+  padding: 24px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.landing-referral-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  align-items: center;
+  width: 100%;
+}
+
+.landing-referral-content {
+  width: 100%;
+}
+
+.landing-referral-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  padding: 24px 16px;
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 860px) {
+  .landing-referral-section {
+    margin-bottom: 80px;
+    padding: 35px 30px;
+  }
+  .landing-referral-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 35px;
+  }
+  .landing-referral-card {
+    padding: 30px;
+    max-width: none;
+  }
+}
+
+/* ==================================================== */
+/* HOW IT WORKS SECTION (MOBILE-FIRST SLIDER)           */
+/* ==================================================== */
+.how-it-works-section {
+  text-align: center;
+  margin-bottom: 70px;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .how-it-works-section {
+    margin-bottom: 100px;
+    padding: 0 20px;
+  }
+}
+
+.how-it-works-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 16px;
+  padding: 25px 12px 15px;
+  margin-top: 15px;
+  scrollbar-width: none;
+}
+
+.how-it-works-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.how-step-card {
+  flex: 0 0 84%;
+  max-width: 320px;
+  scroll-snap-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px 20px 24px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.how-step-card:active {
+  transform: scale(0.98);
+}
+
+.how-step-number {
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: var(--glow-emerald);
+}
+
+.how-step-icon {
+  font-size: 2.2rem;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* Dots indicator for mobile slide */
+.how-slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.how-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-color);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.how-dot.active {
+  width: 24px;
+  border-radius: 6px;
+  background: var(--accent-emerald);
+}
+
+/* Desktop: 3-column grid */
+@media (min-width: 768px) {
+  .how-it-works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    overflow-x: visible;
+    padding: 25px 0 0;
+    margin-top: 35px;
+  }
+  .how-step-card {
+    flex: auto;
+    max-width: none;
+    scroll-snap-align: none;
+  }
+  .how-slider-dots {
+    display: none;
+  }
+}
+
+/* Spacing fix for About Section */
+.about-section {
+  margin-top: 30px;
+  padding-top: 25px;
+}
+@media (min-width: 768px) {
+  .about-section {
+    margin-top: 50px;
+    padding-top: 40px;
+  }
+}

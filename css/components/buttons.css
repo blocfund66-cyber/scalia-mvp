@@ -1,0 +1,58 @@
+/* Buttons CSS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  text-decoration: none;
+  user-select: none;
+  font-family: var(--font-body);
+}
+
+.btn-primary-trainer {
+  background: var(--accent-emerald);
+  color: #ffffff;
+}
+.btn-primary-trainer:hover {
+  background: #10b981;
+  box-shadow: var(--glow-emerald);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--text-muted);
+  transform: translateY(-2px);
+}
+
+.btn-outline-trainer {
+  background: transparent;
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald);
+}
+.btn-outline-trainer:hover {
+  background: var(--accent-emerald-soft);
+  transform: translateY(-2px);
+}
+
+.btn-urgent {
+  background: var(--accent-red);
+  color: white;
+  box-shadow: var(--glow-red);
+}
+.btn-urgent:hover {
+  background: #f43f5e;
+  transform: translateY(-2px);
+}

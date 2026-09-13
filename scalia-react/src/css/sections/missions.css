@@ -1,0 +1,42 @@
+/* css/sections/missions.css */
+/* MISSIONS SHOWCASE WITH BACKGROUND PHOTO */
+.missions-showcase-section {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 80px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  background-image: url('/assets/missions_ai_background.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.missions-bg-overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  pointer-events: none;
+  z-index: 1;
+}
+body.light-mode .missions-bg-overlay {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(241, 245, 249, 0.82) 50%, rgba(255, 255, 255, 0.85) 100%);
+}
+body:not(.light-mode) .missions-bg-overlay {
+  background: linear-gradient(135deg, rgba(7, 9, 19, 0.90) 0%, rgba(15, 23, 42, 0.84) 50%, rgba(10, 15, 30, 0.88) 100%);
+}
+.missions-content-wrapper {
+  position: relative;
+  z-index: 2;
+  padding: 40px 18px;
+}
+
+@media (min-width: 768px) {
+  .missions-content-wrapper {
+    padding: 60px 40px;
+  }
+  .missions-showcase-section {
+    border-radius: 28px;
+  }
+}

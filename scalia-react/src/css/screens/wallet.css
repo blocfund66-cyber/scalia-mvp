@@ -1,0 +1,254 @@
+/* ---------------------------------------------------- */
+/* WALLET SCREEN STYLES (MOBILE-FIRST)                  */
+/* ---------------------------------------------------- */
+
+/* Layout: single column by default (mobile), 2 columns on desktop */
+.wallet-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+  .wallet-layout {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 25px;
+  }
+}
+
+/* Card container: compact on mobile, spacious on desktop */
+.wallet-card-container {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(99, 102, 241, 0.1));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 16px;
+  padding: 16px 14px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .wallet-card-container {
+    border-radius: 20px;
+    padding: 30px;
+  }
+}
+
+.wallet-balance-row {
+  margin: 14px 0 16px;
+}
+
+@media (min-width: 768px) {
+  .wallet-balance-row {
+    margin: 25px 0 20px;
+  }
+}
+
+.wallet-balance-title {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+  .wallet-balance-title {
+    font-size: 0.85rem;
+  }
+}
+
+.wallet-balance-big {
+  font-size: clamp(1.6rem, 5.5vw, 2.5rem);
+  font-weight: 800;
+  font-family: var(--font-title);
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-top: 4px;
+  word-break: break-word;
+}
+
+/* Actions row: 2 primary buttons on row 1 (Déposer & Retirer), 3rd button spans full width (Collatéral / Paylink) */
+.wallet-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wallet-actions-row .btn {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.wallet-actions-row .btn i {
+  flex-shrink: 0;
+  font-size: 1.05rem;
+}
+
+.wallet-actions-row .btn:last-child,
+.wallet-actions-row .wallet-btn-collateral {
+  grid-column: 1 / -1;
+  padding: 12px 18px;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 768px) {
+  .wallet-actions-row {
+    gap: 12px;
+  }
+  .wallet-actions-row .btn {
+    padding: 12px 16px;
+    font-size: 0.92rem;
+  }
+  .wallet-actions-row .btn:last-child,
+  .wallet-actions-row .wallet-btn-collateral {
+    padding: 13px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Collateral details card */
+.collateral-list-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 16px 14px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .collateral-list-card {
+    border-radius: 20px;
+    padding: 25px;
+  }
+}
+
+.collateral-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.84rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.collateral-row-item > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.collateral-row-item > span:last-child {
+  flex-shrink: 0;
+  white-space: nowrap;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .collateral-row-item {
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
+}
+
+/* Transaction table card & responsive table */
+.tx-table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.tx-table-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 1.05rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .tx-table-card {
+    border-radius: 20px;
+    padding: 25px;
+    gap: 20px;
+  }
+}
+
+.tx-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  min-width: 320px;
+}
+
+th {
+  text-align: left;
+  padding: 10px 8px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+  table {
+    font-size: 0.88rem;
+  }
+  th {
+    padding: 12px 10px;
+    font-size: 0.85rem;
+  }
+  td {
+    padding: 14px 10px;
+    font-size: 0.88rem;
+  }
+}

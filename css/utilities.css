@@ -1,0 +1,50 @@
+/* Utilities CSS */
+.watermark-container {
+  position: relative;
+  overflow: hidden;
+}
+.card-watermark {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 140px;
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  transition: var(--transition);
+  border-radius: 50%;
+}
+.watermark-training {
+  background-image: url('assets/worker_phone_desk.png');
+}
+.screen-watermark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  height: 320px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top right;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------------------------------------------------- */
+/* VIEW SCREENS ROUTER                                  */
+/* ---------------------------------------------------- */
+.view-screen {
+  display: none;
+  animation: fadeIn 0.3s ease forwards;
+}
+.view-screen.active-screen {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
