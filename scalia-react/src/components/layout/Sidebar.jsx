@@ -15,7 +15,7 @@ export const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="logo-container sidebar-logo" onClick={() => setScreen('landing')}>
-        <div className="logo-icon"><i className="ri-instance-line"></i></div>
+        <img src="/assets/scalia_icon.svg" alt="Scalia" className="logo-icon" />
         <span>SCALIA</span>
       </div>
 

@@ -36,7 +36,7 @@ export default function LandingScreen() {
         {/*  Header  */}
         <header className="landing-header">
           <a href="#" className="logo-container" onClick={(e) => { e.preventDefault(); setScreen('landing'); }}>
-            <div className="logo-icon"><i className="ri-instance-line"></i></div>
+            <img src="/assets/scalia_icon.svg" alt="Scalia" className="logo-icon" />
             <span>SCALIA</span>
           </a>
           <nav className="landing-nav">
@@ -969,7 +969,7 @@ export default function LandingScreen() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="logo-container" style={{marginBottom: '5px'}}>
-                <div className="logo-icon"><i className="ri-instance-line"></i></div>
+                <img src="/assets/scalia_icon.svg" alt="Scalia" className="logo-icon" />
                 <span>SCALIA</span>
               </div>
               <p data-i18n="footer_brand_desc">Plateforme décentralisée d'entraînement d'IA et de micro-travail humain rémunéré. Démocratisez l'intelligence artificielle.</p>

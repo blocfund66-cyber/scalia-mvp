@@ -11,7 +11,7 @@ export default function LandingHeader() {
         onClick={() => setScreen('landing')}
         style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
       >
-        <div className="logo-icon"><i className="ri-instance-line"></i></div>
+        <img src="/assets/scalia_icon.svg" alt="Scalia" className="logo-icon" />
         <span style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em' }}>SCALIA</span>
       </div>
 
